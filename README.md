@@ -20,7 +20,7 @@ This dockerfile will build a new installation of [Pancake App](https://www.panca
 
 - 4. Login to MySQL and create a Pancake database user
 ~~~~
-`docker exec -it mysql-pancake /bin/bash -c "export TERM=xterm; exec bash"`
+docker exec -it mysql-pancake /bin/bash -c "export TERM=xterm; exec bash"
 mysql -u root -p
 CREATE DATABASE pancake_db;
 CREATE USER 'pancake_user'@'%' IDENTIFIED BY 'YOURPASSWORDHERE';
