@@ -19,18 +19,17 @@ This dockerfile will build a new installation of [Pancake App](https://www.panca
 `docker run -d --restart="always" --name mysql-pancake -e MYSQL_ROOT_PASSWORD=YOURPASSWORDHERE -v /data/mysql-pancake:/var/lib/mysql -v /etc/localtime:/etc/localtime:ro mysql:latest`
 
 - 4. Login to MySQL and create a Pancake database user
-
-`docker exec -it mysql-pancake /bin/bash -c "export TERM=xterm; exec bash"`
 ~~~~
+`docker exec -it mysql-pancake /bin/bash -c "export TERM=xterm; exec bash"`
 mysql -u root -p
 CREATE DATABASE pancake_db;
 CREATE USER 'pancake_user'@'%' IDENTIFIED BY 'YOURPASSWORDHERE';
 GRANT ALTER,SELECT,INSERT,UPDATE,DELETE ON pancake_db.* TO 'pancake_user'@'%';
 FLUSH PRIVILEGES;
 ~~~~
-- Create a pancake container on port 8282
+- 5. Create a pancake container on port 8282
 `docker run -d --restart="always" -p 8282:80 --name pancake  -v /data/pancake:/var/www/html -v /etc/localtime:/etc/localtime:ro --link mysql-pancake:mysql docker-pancake:latest`
-- Follow the pancake install wizard.
+- 6. Follow the pancake install wizard.
 ~~~~
 database host: mysql
 port: 3306
